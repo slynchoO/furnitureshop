@@ -1,21 +1,28 @@
 package com.furnitureshop.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
-@Table(name = "customers")
-public class Customer extends BaseEntity {
+@Table(name = "users")
+public class User extends BaseEntity {
 //represents the customers who create
 //an account to place orders on the online shopping platform.
 
+    @Column(unique = true, nullable = false)
+    private String username;
+
+    @Column
     private String firstName;
 
+    @Column(nullable = false)
     private String lastName;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     private String address;
@@ -25,7 +32,11 @@ public class Customer extends BaseEntity {
     @OneToOne
     private Cart currentCart;
 
-    public Customer() {
+    @ManyToMany
+    private Set<Role> roles;
+
+    public User() {
+
     }
 
     public String getFirstName() {
@@ -82,5 +93,21 @@ public class Customer extends BaseEntity {
 
     public void setCurrentCart(Cart currentCart) {
         this.currentCart = currentCart;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
