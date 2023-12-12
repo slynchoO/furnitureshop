@@ -3,11 +3,13 @@ package com.furnitureshop.model.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity {
     private String itemName;
-    private double price;
+    private BigDecimal price;
 
     public Product() {
     }
@@ -20,11 +22,11 @@ public class Product extends BaseEntity {
         this.itemName = itemName;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }
